@@ -1,0 +1,87 @@
+:root {
+    --rojo: #D71921;
+    --azul: #001D3D;
+    --negro: #0a0a0a;
+}
+
+body {
+    background-color: var(--negro);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: var(--azul);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--rojo);
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; }
+.logo span { color: var(--rojo); }
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.seccion-titulo {
+    padding: 20px 5%;
+    margin-top: 20px;
+}
+
+.seccion-titulo h2 {
+    border-left: 5px solid var(--rojo);
+    padding-left: 15px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.contenedor-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 5% 40px 5%;
+}
+
+.item-galeria {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease;
+}
+
+.item-galeria:hover {
+    transform: scale(1.03);
+    border-color: var(--rojo);
+}
+
+.item-galeria img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.pie-foto {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    font-size: 0.85rem;
+    text-align: center;
+    border-top: 2px solid var(--rojo);
+}
+
+@media (max-width: 600px) {
+    .contenedor-galeria {
+        grid-template-columns: 1fr;
+    }
+}
