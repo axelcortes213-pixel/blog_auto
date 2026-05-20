@@ -6,13 +6,20 @@
     --blanco: #ffffff;
 }
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
     background-color: var(--negro);
     color: var(--blanco);
     line-height: 1.6;
 }
+
+/* HEADER */
 
 header {
     background-color: var(--azul-wec);
@@ -24,7 +31,7 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -32,10 +39,17 @@ header {
     color: var(--rojo-wec);
 }
 
+/* NAV */
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
 nav a {
     color: var(--blanco);
     text-decoration: none;
-    margin-left: 20px;
     font-weight: bold;
     text-transform: uppercase;
     transition: 0.3s;
@@ -45,86 +59,96 @@ nav a:hover {
     color: var(--rojo-wec);
 }
 
-.seccion-titulo {
-    background: linear-gradient(90deg, var(--rojo-wec), transparent);
-    padding: 10px 5%;
-    margin: 30px 0 20px 0;
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:60px 5%;
+    gap:40px;
 }
 
-.seccion-titulo h2 {
-    margin: 0;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+.hero-content{
+    flex:1;
 }
 
-.contenedor-autos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 0 5% 50px 5%;
+.hero-content h1{
+    font-size:4rem;
+    line-height:1;
+    margin-bottom:20px;
 }
 
-.tarjeta {
-    background-color: var(--gris-card);
-    border: 1px solid #333;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: 0.4s;
+.hero-content h1 span{
+    color:var(--rojo-wec);
 }
 
-.tarjeta:hover {
-    border-color: var(--rojo-wec);
-    transform: translateY(-8px);
+.subtitle{
+    font-size:1.5rem;
+    margin-bottom:20px;
+    color:#ccc;
 }
 
-.tarjeta img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    border-bottom: 2px solid #333;
+.description{
+    margin-bottom:30px;
+    font-size:1.1rem;
 }
 
-.info {
-    padding: 20px;
+.btn-cta{
+    display:inline-block;
+    background:var(--rojo-wec);
+    color:white;
+    padding:14px 30px;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+    transition:.3s;
 }
 
-.info h3 {
-    margin: 0 0 15px 0;
-    color: var(--rojo-wec);
-    text-align: center;
-    font-size: 1.1rem;
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
+.btn-cta:hover{
+    background:#ff2b35;
+    transform:translateY(-3px);
 }
 
-.ficha-tecnica {
-    background-color: #0f0f0f;
-    border-radius: 5px;
-    padding: 10px;
+/* IMAGEN */
+
+.hero-image{
+    flex:1;
+    text-align:center;
 }
 
-.ficha-tecnica p {
-    font-size: 0.85rem;
-    margin: 8px 0;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px dashed #333;
-    padding-bottom: 3px;
+.hero-image img{
+    width:100%;
+    max-width:600px;
+    border-radius:15px;
+    box-shadow:0 0 25px rgba(215,25,33,.4);
 }
 
-.ficha-tecnica strong {
-    color: var(--rojo-wec);
-    font-weight: 600;
-}
+/* RESPONSIVE */
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 15px;
+@media (max-width: 768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
     }
-    
-    nav a {
-        margin: 0 10px;
-        font-size: 0.8rem;
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero-content h1{
+        font-size:2.8rem;
+    }
+
+    .subtitle{
+        font-size:1.2rem;
     }
 }
