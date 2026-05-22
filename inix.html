@@ -1,56 +1,465 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog sobre el WEC y Hypercars: equipos, estrategia y resistencia">
-    <title>Resistencia sobre Ruedas | Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Ruta correcta para GitHub Pages -->
-    <link rel="stylesheet" href="css/estilos.css">
+<title>Resistencia sobre Ruedas</title>
+
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b0b0b;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    background:#111;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+/* LOGO */
+
+.logo{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.logo span{
+    color:crimson;
+}
+
+/* MENU */
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+    align-items:center;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:crimson;
+}
+
+/* HERO */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+    padding:60px;
+    min-height:90vh;
+}
+
+/* TEXTO */
+
+.hero-content{
+    max-width:500px;
+    animation:fadeLeft 1s ease;
+}
+
+.hero-content h1{
+    font-size:4rem;
+    line-height:1.1;
+}
+
+.hero-content h1 span{
+    color:crimson;
+}
+
+.subtitle{
+    margin-top:20px;
+    font-size:1.5rem;
+    color:#ccc;
+}
+
+.description{
+    margin-top:20px;
+    line-height:1.6;
+}
+
+/* BOTON */
+
+.btn-cta{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 30px;
+    background:crimson;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.btn-cta:hover{
+    background:#ff365d;
+    transform:scale(1.05);
+}
+
+/* CARRUSEL */
+
+.carousel{
+    position:relative;
+    width:650px;
+    height:400px;
+    animation:fadeRight 1s ease;
+}
+
+/* CONTENEDOR */
+
+.carousel-container{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,0,60,0.3);
+}
+
+/* IMAGENES */
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    opacity:0;
+    transition:opacity 1s ease;
+}
+
+/* ACTIVA */
+
+.slide.active{
+    opacity:1;
+}
+
+/* BOTONES */
+
+.prev,
+.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+
+    background:rgba(0,0,0,0.5);
+    border:none;
+    color:white;
+    padding:15px;
+    cursor:pointer;
+    font-size:1.5rem;
+    z-index:10;
+
+    transition:0.3s;
+}
+
+.prev:hover,
+.next:hover{
+    background:crimson;
+}
+
+.prev{
+    left:10px;
+}
+
+.next{
+    right:10px;
+}
+
+/* INDICADORES */
+
+.dots{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+    gap:10px;
+}
+
+.dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#666;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dot.active{
+    background:crimson;
+    transform:scale(1.2);
+}
+
+/* ANIMACIONES */
+
+@keyframes fadeLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes fadeRight{
+
+    from{
+        opacity:0;
+        transform:translateX(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .carousel{
+        width:100%;
+        max-width:500px;
+        height:320px;
+    }
+
+    header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content h1{
+        font-size:3rem;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">RESISTENCIA<span>RUEDAS</span></div>
+<header>
 
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="garaje.html">Garaje</a></li>
-                <li><a href="pits.html">Pits</a></li>
-                <li><a href="multimedia.html">Multimedia</a></li>
-                <li><a href="comunidad.html">Comunidad</a></li>
-                <li><a href="mapa.html">Mapa</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="logo">
+        RESISTENCIA<span>RUEDAS</span>
+    </div>
 
-    <main>
-        <section class="hero">
+    <nav>
+        <ul>
+            <li><a href="#">Garaje</a></li>
+            <li><a href="#">Pits</a></li>
+            <li><a href="#">Multimedia</a></li>
+            <li><a href="#">Comunidad</a></li>
+            <li><a href="#">Mapa</a></li>
+        </ul>
+    </nav>
 
-            <div class="hero-content">
-                <h1>EL MUNDO <br><span>DEL WEC</span></h1>
+</header>
 
-                <h2 class="subtitle">
-                    Velocidad, estrategia y resistencia pura
-                </h2>
+<main>
 
-                <p class="description">
-                    Bienvenido al blog definitivo de la categoría Hypercar.
-                </p>
+<section class="hero">
 
-                <a href="garaje.html" class="btn-cta">
-                    Ver Equipos
-                </a>
+    <div class="hero-content">
+
+        <h1>
+            EL MUNDO <br>
+            <span>DEL WEC</span>
+        </h1>
+
+        <h2 class="subtitle">
+            Velocidad, estrategia y resistencia pura
+        </h2>
+
+        <p class="description">
+            Bienvenido al blog definitivo de Hypercars, Le Mans y resistencia.
+        </p>
+
+        <a href="#" class="btn-cta">
+            Ver Equipos
+        </a>
+
+    </div>
+
+    <!-- CARRUSEL -->
+
+    <div>
+
+        <div class="carousel">
+
+            <button class="prev">&#10094;</button>
+
+            <div class="carousel-container">
+
+                <!-- CAMBIA AQUI TUS IMAGENES -->
+
+                <img src="img/wec1.jpg" class="slide active">
+
+                <img src="img/wec2.jpg" class="slide">
+
+                <img src="img/wec3.jpg" class="slide">
+
+                <img src="img/wec4.jpg" class="slide">
+
             </div>
 
-            <div class="hero-image">
-                <!-- Ruta correcta de imagen -->
-                <img src="img/hipercar.jpg" alt="Hypercar del WEC en pista">
-            </div>
+            <button class="next">&#10095;</button>
 
-        </section>
-    </main>
+        </div>
+
+        <!-- PUNTOS -->
+
+        <div class="dots"></div>
+
+    </div>
+
+</section>
+
+</main>
+
+<script>
+
+/* IMAGENES */
+
+const slides = document.querySelectorAll(".slide");
+
+const nextBtn = document.querySelector(".next");
+
+const prevBtn = document.querySelector(".prev");
+
+const dotsContainer = document.querySelector(".dots");
+
+let current = 0;
+
+/* CREAR PUNTOS */
+
+slides.forEach((_, index)=>{
+
+    const dot = document.createElement("div");
+
+    dot.classList.add("dot");
+
+    if(index === 0){
+        dot.classList.add("active");
+    }
+
+    dot.addEventListener("click", ()=>{
+
+        current = index;
+
+        showSlide(current);
+
+    });
+
+    dotsContainer.appendChild(dot);
+
+});
+
+const dots = document.querySelectorAll(".dot");
+
+/* MOSTRAR IMAGEN */
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    dots.forEach(dot=>{
+        dot.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+
+    dots[index].classList.add("active");
+}
+
+/* SIGUIENTE */
+
+nextBtn.addEventListener("click", ()=>{
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    showSlide(current);
+
+});
+
+/* ANTERIOR */
+
+prevBtn.addEventListener("click", ()=>{
+
+    current--;
+
+    if(current < 0){
+        current = slides.length - 1;
+    }
+
+    showSlide(current);
+
+});
+
+/* AUTO PLAY */
+
+setInterval(()=>{
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    showSlide(current);
+
+}, 4000);
+
+</script>
 
 </body>
 </html>
