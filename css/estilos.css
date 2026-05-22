@@ -1,0 +1,130 @@
+:root {
+    --rojo-wec: #D71921;
+    --azul-wec: #001D3D;
+    --negro: #0a0a0a;
+    --gris-card: #161616;
+    --blanco: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--negro);
+    color: var(--blanco);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--azul-wec);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid var(--rojo-wec);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--rojo-wec);
+}
+
+nav a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--rojo-wec);
+}
+
+.seccion-titulo {
+    background: linear-gradient(90deg, var(--rojo-wec), transparent);
+    padding: 10px 5%;
+    margin: 30px 0 20px 0;
+}
+
+.seccion-titulo h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.contenedor-autos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 5% 50px 5%;
+}
+
+.tarjeta {
+    background-color: var(--gris-card);
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.tarjeta:hover {
+    border-color: var(--rojo-wec);
+    transform: translateY(-8px);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-bottom: 2px solid #333;
+}
+
+.info {
+    padding: 20px;
+}
+
+.info h3 {
+    margin: 0 0 15px 0;
+    color: var(--rojo-wec);
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+.ficha-tecnica {
+    background-color: #0f0f0f;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.ficha-tecnica p {
+    font-size: 0.85rem;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #333;
+    padding-bottom: 3px;
+}
+
+.ficha-tecnica strong {
+    color: var(--rojo-wec);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav a {
+        margin: 0 10px;
+        font-size: 0.8rem;
+    }
+}
