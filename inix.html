@@ -1,665 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Resistencia sobre Ruedas</title>
-
-<style>
-
-/* RESET */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* BODY */
-
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#0b0b0b;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* HEADER */
-
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 60px;
-    background:#111;
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-/* LOGO */
-
-.logo{
-    font-size:2rem;
-    font-weight:bold;
-}
-
-.logo span{
-    color:crimson;
-}
-
-/* MENU */
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:30px;
-    align-items:center;
-}
-
-nav a{
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-nav a:hover{
-    color:crimson;
-}
-
-/* HERO */
-
-.hero{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:50px;
-    padding:60px;
-    min-height:90vh;
-}
-
-/* TEXTO */
-
-.hero-content{
-    max-width:500px;
-    animation:fadeLeft 1s ease;
-}
-
-.hero-content h1{
-    font-size:4rem;
-    line-height:1.1;
-}
-
-.hero-content h1 span{
-    color:crimson;
-}
-
-.subtitle{
-    margin-top:20px;
-    font-size:1.5rem;
-    color:#ccc;
-}
-
-.description{
-    margin-top:20px;
-    line-height:1.6;
-}
-
-/* BOTON */
-
-.btn-cta{
-    display:inline-block;
-    margin-top:30px;
-    padding:15px 30px;
-    background:crimson;
-    color:white;
-    text-decoration:none;
-    border-radius:10px;
-    transition:0.3s;
-    border:none;
-    cursor:pointer;
-}
-
-.btn-cta:hover{
-    background:#ff365d;
-    transform:scale(1.05);
-}
-
-/* CARRUSEL */
-
-.carousel{
-    position:relative;
-    width:650px;
-    height:400px;
-    animation:fadeRight 1s ease;
-}
-
-/* CONTENEDOR */
-
-.carousel-container{
-    width:100%;
-    height:100%;
-    position:relative;
-    overflow:hidden;
-    border-radius:20px;
-    box-shadow:0 0 25px rgba(255,0,60,0.3);
-}
-
-/* IMAGENES */
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:0;
-    transition:opacity 1s ease;
-}
-
-/* ACTIVA */
-
-.slide.active{
-    opacity:1;
-}
-
-/* BOTONES */
-
-.prev,
-.next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:rgba(0,0,0,0.5);
-    border:none;
-    color:white;
-    padding:15px;
-    cursor:pointer;
-    font-size:1.5rem;
-    z-index:10;
-    transition:0.3s;
-}
-
-.prev:hover,
-.next:hover{
-    background:crimson;
-}
-
-.prev{
-    left:10px;
-}
-
-.next{
-    right:10px;
-}
-
-/* INDICADORES */
-
-.dots{
-    display:flex;
-    justify-content:center;
-    margin-top:15px;
-    gap:10px;
-}
-
-.dot{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    background:#666;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.dot.active{
-    background:crimson;
-    transform:scale(1.2);
-}
-
-/* SECCIONES */
-
-.section{
-    padding:80px 60px;
-    min-height:100vh;
-}
-
-.section h2{
-    font-size:3rem;
-    margin-bottom:30px;
-    color:crimson;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
-
-.card{
-    background:#151515;
-    padding:25px;
-    border-radius:15px;
-    transition:0.3s;
-    cursor:pointer;
-    border:2px solid transparent;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    border-color:crimson;
-}
-
-.card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.card h3{
-    margin-top:15px;
-}
-
-.card p{
-    margin-top:10px;
-    color:#ccc;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.8);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-}
-
-.modal-content{
-    background:#1b1b1b;
-    padding:40px;
-    border-radius:20px;
-    width:90%;
-    max-width:600px;
-    text-align:center;
-    animation:fadeUp 0.4s ease;
-}
-
-.modal-content img{
-    width:100%;
-    border-radius:15px;
-    margin-bottom:20px;
-}
-
-.close{
-    float:right;
-    font-size:2rem;
-    cursor:pointer;
-    color:crimson;
-}
-
-/* ANIMACIONES */
-
-@keyframes fadeLeft{
-    from{
-        opacity:0;
-        transform:translateX(-50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes fadeRight{
-    from{
-        opacity:0;
-        transform:translateX(50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* RESPONSIVE */
-
-@media(max-width:950px){
-
-    .hero{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .carousel{
-        width:100%;
-        max-width:500px;
-        height:320px;
-    }
-
-    header{
-        flex-direction:column;
-        gap:20px;
-    }
-
-    nav ul{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .hero-content h1{
-        font-size:3rem;
-    }
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistencia sobre Ruedas</title>
+    <!-- Vinculación del archivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
+    <header>
+        <div class="logo">
+            RESISTENCIA<span>RUEDAS</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#garaje">Garaje</a></li>
+                <li><a href="#pits">Pits</a></li>
+                <li><a href="#multimedia">Multimedia</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="logo">
-        RESISTENCIA<span>RUEDAS</span>
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="#garaje">Garaje</a></li>
-            <li><a href="#pits">Pits</a></li>
-            <li><a href="#multimedia">Multimedia</a></li>
-            <li><a href="#comunidad">Comunidad</a></li>
-        </ul>
-    </nav>
-
-</header>
-
-<main>
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <h1>
-            EL MUNDO <br>
-            <span>DEL WEC</span>
-        </h1>
-
-        <h2 class="subtitle">
-            Velocidad, estrategia y resistencia pura
-        </h2>
-
-        <p class="description">
-            Bienvenido al blog definitivo de Hypercars, Le Mans y resistencia.
-        </p>
-
-        <button class="btn-cta" id="exploreBtn">
-            Ver Equipos
-        </button>
-
-    </div>
-
-    <!-- CARRUSEL -->
-
-    <div>
-
-        <div class="carousel">
-
-            <button class="prev">&#10094;</button>
-
-            <div class="carousel-container">
-
-                <img src="img/wec1.jpg" class="slide active">
-                <img src="img/wec2.jpg" class="slide">
-                <img src="img/wec3.jpg" class="slide">
-                <img src="img/wec4.jpg" class="slide">
-
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>
+                    EL MUNDO <br>
+                    <span>DEL WEC</span>
+                </h1>
+                <h2 class="subtitle">
+                    Velocidad, estrategia y resistencia pura
+                </h2>
+                <p class="description">
+                    Bienvenido al blog definitivo de Hypercars, Le Mans y resistencia.
+                </p>
+                <button class="btn-cta" id="exploreBtn">
+                    Ver Equipos
+                </button>
             </div>
 
-            <button class="next">&#10095;</button>
+            <!-- CARRUSEL -->
+            <div>
+                <div class="carousel">
+                    <button class="prev">&#10094;</button>
+                    <div class="carousel-container">
+                        <img src="img/wec1.jpg" class="slide active">
+                        <img src="img/wec2.jpg" class="slide">
+                        <img src="img/wec3.jpg" class="slide">
+                        <img src="img/wec4.jpg" class="slide">
+                    </div>
+                    <button class="next">&#10095;</button>
+                </div>
+                <div class="dots"></div>
+            </div>
+        </section>
 
+        <!-- GARAJE -->
+        <section class="section" id="garaje">
+            <h2>Equipos Hypercar</h2>
+            <div class="cards">
+                <div class="card"
+                     data-title="Toyota Gazoo Racing"
+                     data-img="img/wec1.jpg"
+                     data-desc="Dominio híbrido y experiencia absoluta en resistencia.">
+                    <img src="img/wec1.jpg">
+                    <h3>Toyota</h3>
+                    <p>Campeones de resistencia.</p>
+                </div>
+
+                <div class="card"
+                     data-title="Ferrari AF Corse"
+                     data-img="img/wec2.jpg"
+                     data-desc="El regreso legendario de Ferrari al WEC.">
+                    <img src="img/wec2.jpg">
+                    <h3>Ferrari</h3>
+                    <p>Historia y velocidad.</p>
+                </div>
+
+                <div class="card"
+                     data-title="Porsche Penske"
+                     data-img="img/wec3.jpg"
+                     data-desc="Ingeniería alemana y tradición en Le Mans.">
+                    <img src="img/wec3.jpg">
+                    <h3>Porsche</h3>
+                    <p>Precisión absoluta.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODAL -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="modalImg">
+                <h2 id="modalTitle"></h2>
+                <p id="modalDesc"></p>
+            </div>
         </div>
+    </main>
 
-        <div class="dots"></div>
-
-    </div>
-
-</section>
-
-<!-- GARAJE -->
-
-<section class="section" id="garaje">
-
-    <h2>Equipos Hypercar</h2>
-
-    <div class="cards">
-
-        <div class="card"
-             data-title="Toyota Gazoo Racing"
-             data-img="img/wec1.jpg"
-             data-desc="Dominio híbrido y experiencia absoluta en resistencia.">
-
-            <img src="img/wec1.jpg">
-            <h3>Toyota</h3>
-            <p>Campeones de resistencia.</p>
-
-        </div>
-
-        <div class="card"
-             data-title="Ferrari AF Corse"
-             data-img="img/wec2.jpg"
-             data-desc="El regreso legendario de Ferrari al WEC.">
-
-            <img src="img/wec2.jpg">
-            <h3>Ferrari</h3>
-            <p>Historia y velocidad.</p>
-
-        </div>
-
-        <div class="card"
-             data-title="Porsche Penske"
-             data-img="img/wec3.jpg"
-             data-desc="Ingeniería alemana y tradición en Le Mans.">
-
-            <img src="img/wec3.jpg">
-            <h3>Porsche</h3>
-            <p>Precisión absoluta.</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- MODAL -->
-
-<div class="modal" id="modal">
-
-    <div class="modal-content">
-
-        <span class="close">&times;</span>
-
-        <img id="modalImg">
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalDesc"></p>
-
-    </div>
-
-</div>
-
-</main>
-
-<script>
-
-/* =========================
-   CARRUSEL
-========================= */
-
-const slides = document.querySelectorAll(".slide");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
-const dotsContainer = document.querySelector(".dots");
-
-let current = 0;
-
-slides.forEach((_, index)=>{
-
-    const dot = document.createElement("div");
-
-    dot.classList.add("dot");
-
-    if(index === 0){
-        dot.classList.add("active");
-    }
-
-    dot.addEventListener("click", ()=>{
-
-        current = index;
-
-        showSlide(current);
-
-    });
-
-    dotsContainer.appendChild(dot);
-
-});
-
-const dots = document.querySelectorAll(".dot");
-
-function showSlide(index){
-
-    slides.forEach(slide=>{
-        slide.classList.remove("active");
-    });
-
-    dots.forEach(dot=>{
-        dot.classList.remove("active");
-    });
-
-    slides[index].classList.add("active");
-    dots[index].classList.add("active");
-}
-
-nextBtn.addEventListener("click", ()=>{
-
-    current++;
-
-    if(current >= slides.length){
-        current = 0;
-    }
-
-    showSlide(current);
-
-});
-
-prevBtn.addEventListener("click", ()=>{
-
-    current--;
-
-    if(current < 0){
-        current = slides.length - 1;
-    }
-
-    showSlide(current);
-
-});
-
-/* AUTO PLAY */
-
-setInterval(()=>{
-
-    current++;
-
-    if(current >= slides.length){
-        current = 0;
-    }
-
-    showSlide(current);
-
-}, 4000);
-
-/* =========================
-   SCROLL INTERACTIVO
-========================= */
-
-document.getElementById("exploreBtn")
-.addEventListener("click", ()=>{
-
-    document.getElementById("garaje")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
-
-});
-
-/* =========================
-   MODAL INTERACTIVO
-========================= */
-
-const cards = document.querySelectorAll(".card");
-
-const modal = document.getElementById("modal");
-
-const modalImg = document.getElementById("modalImg");
-
-const modalTitle = document.getElementById("modalTitle");
-
-const modalDesc = document.getElementById("modalDesc");
-
-const closeModal = document.querySelector(".close");
-
-cards.forEach(card=>{
-
-    card.addEventListener("click", ()=>{
-
-        modal.style.display = "flex";
-
-        modalImg.src = card.dataset.img;
-
-        modalTitle.textContent = card.dataset.title;
-
-        modalDesc.textContent = card.dataset.desc;
-
-    });
-
-});
-
-closeModal.addEventListener("click", ()=>{
-
-    modal.style.display = "none";
-
-});
-
-window.addEventListener("click", (e)=>{
-
-    if(e.target === modal){
-
-        modal.style.display = "none";
-
-    }
-
-});
-
-</script>
-
+    <!-- Vinculación del archivo JavaScript externo -->
+    <script src="script.js"></script>
 </body>
 </html>
